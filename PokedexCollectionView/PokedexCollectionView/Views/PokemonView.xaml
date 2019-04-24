@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PokedexCollectionView.Views.PokemonView"
+             Title="Pokédex">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <ActivityIndicator IsRunning="{Binding IsLoading}"
+                               IsEnabled="{Binding IsLoading}"
+                               IsVisible="{Binding IsLoading}"
+                               Color="Green"/>
+
+            <CollectionView ItemsSource="{Binding PokemonList}" x:Name="collectionView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Padding="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Image Grid.RowSpan="2"
+                                   Source="{Binding ImageURL}"
+                                   WidthRequest="60"
+                                   HeightRequest="60"
+                                   Aspect="AspectFill"/>
+
+                            <Label Grid.Column="1"
+                                   Text="{Binding name.english}"
+                                   FontAttributes="Bold"
+                                   TextColor="Blue"/>
+
+                            <Label Grid.Row="1"
+                                   Grid.Column="1"
+                                   Text="{Binding Types}"
+                                   TextColor="Orange"
+                                   FontAttributes="Italic"
+                                   VerticalOptions="End"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
